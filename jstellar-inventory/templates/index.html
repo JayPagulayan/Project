@@ -21,15 +21,18 @@
                     <th>Item Name</th>
                     <th>Category</th>
                     <th>Stock Level</th>
+                    <th>Actions</th></th>
                 </tr>
             </thead>
             <tbody id="inventoryBody">
+                <!-- Jinja Loop to generate rows from the database -->
                 {%for item in items%}
                 <tr>
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.category}}</td>
                     <td>{{item.stock}}</td>
+                    <td><button onclick="deleteItem({{ item.id }})">Delete</button></td>
                 </tr>
                 {%endfor%}
             </tbody>

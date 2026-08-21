@@ -25,3 +25,17 @@ myButton.addEventListener("click", function() {
         }
     });
 });
+
+function deleteItem(ItemId){
+    let confirmDelete = confirm("Are you sure you want to delete this item?");
+
+    if(confirmDelete){
+        fetch('/delete/' + ItemId, {
+            method: 'DELETE'
+        }).then(function(response){
+            if(response.ok){
+                window.location.reload();
+            }
+        });
+    }
+}

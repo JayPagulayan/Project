@@ -46,5 +46,19 @@ def add_item():
 
     return jsonify({"message": "Success"})
 
+@app.route('/delete/<int:item_id>', methods=['DELETE'])
+def delete_item(item_id):
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute('DELETE FROM inventory WHERE id = %s;', (item_id,))
+    
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    return jsonify({"message": "Item Deleted"})
+
 if __name__ == '__main__':
     app.run(debug=True)
