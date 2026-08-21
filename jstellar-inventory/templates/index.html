@@ -21,7 +21,7 @@
                     <th>Item Name</th>
                     <th>Category</th>
                     <th>Stock Level</th>
-                    <th>Actions</th></th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="inventoryBody">
@@ -32,7 +32,10 @@
                     <td>{{item.name}}</td>
                     <td>{{item.category}}</td>
                     <td>{{item.stock}}</td>
-                    <td><button onclick="deleteItem({{ item.id }})">Delete</button></td>
+                    <td>
+                        <button onclick="editItem({{ item.id }})">Edit</button>
+                        <button onclick="deleteItem({{ item.id }})">Delete</button>
+                    </td>
                 </tr>
                 {%endfor%}
             </tbody>

@@ -60,5 +60,21 @@ def delete_item(item_id):
     
     return jsonify({"message": "Item Deleted"})
 
+@app.route('/edit/<int:item_id>', methods=['POST'])
+def edit_item(item_id):
+    update_data = request.get_json()
+    new_stock = update_data['stock']
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute('UPDATE inventory SET stock = %s WHERE id = %s;', (new_stock, item_id))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"message": "Item Update"})
+
 if __name__ == '__main__':
     app.run(debug=True)
