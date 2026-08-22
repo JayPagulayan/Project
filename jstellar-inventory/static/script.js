@@ -7,23 +7,30 @@ myButton.addEventListener("click", function() {
     let itemCategory = prompt("Enter the Category:");
     let itemStock = prompt("Enter the Stock Level:");
 
-    let newItemData = {
+    if (itemName !== null && itemName.trim() !== "" &&
+        itemCategory !== null && itemCategory.trim() !== "" &&
+        itemStock !== null && itemStock.trim() !== ""
+    ){
+        let newItemData = {
         "name": itemName,
         "category": itemCategory,
         "stock": itemStock
-    };  
+        };  
 
-    fetch('/add',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newItemData)
-        }).then(function(response){
-            if(response.ok){
-                window.location.reload();
+        fetch('/add',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newItemData)
+            }).then(function(response){
+                if(response.ok){
+                    window.location.reload();
+            }
+        });
+        }else{
+            alert("Action cancelled or missing information. Item not added.");
         }
-    });
 });
 
 function deleteItem(itemId){
